@@ -22,4 +22,7 @@
     *chooseRandomWord
     * checkWin
     *checkLoss
-    
+
+    Vad har vi gjort:
+
+    Simon: Skapat en grund i vår html 

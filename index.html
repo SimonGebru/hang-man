@@ -8,7 +8,38 @@
     <title>Hang-man</title>
 </head>
 <body>
-    <img src="hang-man.svg" alt="">
-    
+    <header>
+        <h1>Hänga Gubbe</h1>
+    </header>
+
+    <main>
+        <!-- Sektion för ordet som ska gissas -->
+        <section class="word-display">
+            <p id="hidden-word">_ _ _ _ _</p> <!-- Här visas det dolda ordet med underscores -->
+        </section>
+
+        <!-- Sektion för gissade bokstäver -->
+        <section class="guess-section">
+            <p>Gissade bokstäver:</p>
+            <div id="guessed-letters"></div> <!-- Visar alla gissade bokstäver -->
+        </section>
+
+        <!-- SVG-grafik för gubben -->
+        <section class="hangman-drawing">
+            <object type="image/svg+xml" data="hangman.svg" class="hangman-svg"></object>
+        </section>
+
+        <!-- Inmatningsfält och gissningsknapp -->
+        <section class="input-section">
+            <input type="text" id="guess-input" maxlength="1" placeholder="Gissa en bokstav" />
+            <button id="guess-button">Gissa</button>
+        </section>
+
+        <!-- Resultatmeddelande och spela igen-knapp -->
+        <section class="result-message">
+            <p id="result-text"></p> <!-- Här visas vinst- eller förlustmeddelanden -->
+            <button id="restart-button" style="display: none;">Spela igen</button>
+        </section>
+    </main>
 </body>
 </html>
