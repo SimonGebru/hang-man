@@ -13,5 +13,11 @@ const guessInput = document.getElementById("guess-input");
 const guessButton = document.getElementById("guess-button");
 const resultText = document.getElementById("result-text");
 const restartButton = document.getElementById("restart-button");
-const hangmanParts = document.querySelectorAll(".part"); // Om vi ändrar alla olika delar och ger dom class-namn part1, part2, part3 osv så ska dom visas en i taget  
-
+const hangmanParts = [
+    document.getElementById("ground"),
+    document.getElementById("scaffold"),
+    document.getElementById("head"),
+    document.getElementById("body"),
+    document.getElementById("arms"),
+    document.getElementById("legs")
+];
