@@ -13,20 +13,20 @@
     </header>
 
     <main>
+        <!-- SVG-grafik för gubben -->
+        <section class="hangman-drawing">
+            <object type="image/svg+xml" data="hangman.svg" class="hangman-svg" ></object>
+        </section>
+
         <!-- Sektion för ordet som ska gissas -->
         <section class="word-display">
-            <p id="hidden-word">_ _ _ _ _</p> <!-- Här visas det dolda ordet med underscores -->
+            <p id="hidden-word">_ _ _ _ _</p>
         </section>
 
         <!-- Sektion för gissade bokstäver -->
         <section class="guess-section">
             <p>Gissade bokstäver:</p>
-            <div id="guessed-letters"></div> <!-- Visar alla gissade bokstäver -->
-        </section>
-
-        <!-- SVG-grafik för gubben -->
-        <section class="hangman-drawing">
-            <object type="image/svg+xml" data="hangman.svg" class="hangman-svg"></object>
+            <div id="guessed-letters"></div>
         </section>
 
         <!-- Inmatningsfält och gissningsknapp -->
@@ -37,7 +37,7 @@
 
         <!-- Resultatmeddelande och spela igen-knapp -->
         <section class="result-message">
-            <p id="result-text"></p> <!-- Här visas vinst- eller förlustmeddelanden -->
+            <p id="result-text"></p>
             <button id="restart-button" style="display: none;">Spela igen</button>
         </section>
     </main>
