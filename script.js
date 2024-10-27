@@ -67,6 +67,8 @@ document.addEventListener('keypress', (event) => {
 })
 
 function handleGuess(letter) {
+    console.log(`you guessed ${letter}`)
+
     //Sätter att man gissat fel som default
     let correctGuess = false
 
