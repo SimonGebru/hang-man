@@ -7,7 +7,7 @@ let guessedLetters = [];
 let incorrectGuesses = 0; // Räknare för felaktiga gissningar
 const maxGuesses =  6 // skriva in antal maximalt antal tillåtna fel
 
-// DOM-element
+// DOM-element 
 const hiddenWordDisplay = document.getElementById("hidden-word");
 const guessedLettersDisplay = document.getElementById("guessed-letters");
 const letterButtons = document.querySelectorAll('.letter-button');
