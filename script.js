@@ -66,8 +66,25 @@ document.addEventListener('keypress', (event) => {
     }
 })
 
+// Start game : ska försöka med arrow function
+const startGame=(word)=> {
+    hiddenWord=word.split('');
+    //hiddenWord= word; // ger in word parametern till functionen och tilldela hiddenWord
+    shownWord=Array(hiddenWord.length).fill("_"); //Få hel bokstaverna och sen fylla de i mellan med " _"
+    guessedLetters=[]; //
+    incorrectGuesses=0;
+    hiddenWordDisplay.textContent=shownWord.join(''); // AZIO = visa med undertecken
+    guessedLettersDisplay.textContent=guessedLetters.join(',');
+    resultText.textContent=" "; // ska visa i result text
+    console.log("le jeux a commencer, Bonne chance  ");
+ 
+};
+
+// Eventlistener till bokstaverna TODO
+
+
 function handleGuess(letter) {
-    console.log(`you guessed ${letter}`)
+    console.log(`you guessed letter ${letter}`)
 
     //Sätter att man gissat fel som default
     let correctGuess = false
@@ -101,4 +118,14 @@ function handleGuess(letter) {
 
         }
     }
+    hiddenWordDisplay.textContent=shownWord.join('');
+    guessedLettersDisplay.textContent=guessedLetters.join(',');
+    if (shownWord.includes('-')==true) {
+        resultText.textContent=" Grattis";
+        console.log(" Grattis");
+        
+        
+    }
+   
 }
+
