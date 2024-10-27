@@ -75,11 +75,12 @@ margin: 20px;
 
 }
 
-/*.hangman-svg #ground,
+
+.hangman-svg #ground,
 .hangman-svg #scaffold,
 .hangman-svg #head,
 .hangman-svg #body,
 .hangman-svg #arms,
 .hangman-svg #legs {
     display: none;
-} */
+} 
