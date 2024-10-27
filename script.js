@@ -1,18 +1,16 @@
 // Globala variabler
-let words = ["javascript", "programmering", "utvecklare", "vispgrädde", "stjärna", "lektion", "betyg"]; // Ordlista
-let selectedWord = ""; // Det ord som slumpas för den aktuella omgången
-let hiddenWord = ['ä', 'p', 'p', 'l', 'e']; 
-let shownWord = ['_', '_', '_', '_', '_']; //Börjar som underscores, uppdateras vid rätt gissning
+let words = ["Javascript", "Programmering", "Utvecklare", "Vispgrädde", "Stjärna", "Lektion", "Betyg"]; // Ordlista
+let selectedWord = ""; 
+let hiddenWord = []; 
+let shownWord = []; 
 let guessedLetters = []; 
-let incorrectGuesses = 0; // Räknare för felaktiga gissningar
-const maxGuesses =  6 // skriva in antal maximalt antal tillåtna fel
+let incorrectGuesses = 0; 
+const maxGuesses = 6; 
 
 // DOM-element 
 const hiddenWordDisplay = document.getElementById("hidden-word");
 const guessedLettersDisplay = document.getElementById("guessed-letters");
 const letterButtons = document.querySelectorAll('.letter-button');
-const guessInput = document.getElementById("guess-input");
-const guessButton = document.getElementById("guess-button");
 const resultText = document.getElementById("result-text");
 const restartButton = document.getElementById("restart-button");
 const hangmanParts = [
@@ -24,108 +22,92 @@ const hangmanParts = [
     document.getElementById("legs")
 ];
 
+// Starta spelet och välj ett slumpmässigt ord
+const startGame = () => {
+    selectedWord = words[Math.floor(Math.random() * words.length)];
+    hiddenWord = selectedWord.toLowerCase().split(''); 
+    shownWord = Array(hiddenWord.length).fill("_"); 
+    guessedLetters = []; 
+    incorrectGuesses = 0;
+    hiddenWordDisplay.textContent = shownWord.join(' ');
+    guessedLettersDisplay.textContent = guessedLetters.join(',');
+    resultText.textContent = "";
+    hangmanParts.forEach(part => part.style.display = "none");
+    console.log(`Spelet har startat! Slumpat ord: ${selectedWord}`);
+};
 
-//Lägger på eventlisteners för alla bokstavsknappar
+// Lägger på eventlisteners för knapparna på skärmen
 for (const btn of letterButtons) {
+    const chosenLetter = btn.innerText.toLowerCase();
 
-    //Hämtar knappens bokstav och gör om den till liten bokstav
-    const chosenLetter = btn.innerText.toLowerCase()
-
-    btn.addEventListener('click', () => {
-
-        handleGuess(chosenLetter) 
-
-        btn.setAttribute('disabled', 'true') //Stänger av knappen som just tryckts
-    })
+    btn.addEventListener('click', (event) => {
+        handleGuess(chosenLetter);
+        event.target.classList.add('guessed'); 
+        event.target.disabled = true;
+    });
 }
 
-//Array med alla alfabetets bokstäver
-document.addEventListener('keypress', (event) => {
-    //Hämtar vilken tangent som trycks
-    const chosenLetter = event.key 
-    
-    //Array med hela alfabetet för att kunna kolla om tangenten är en bokstav
-    const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'å', 'ä', 'ö']
+// Tangentbordsinmatning för bokstäver
+document.addEventListener('keydown', (event) => {
+    const chosenLetter = event.key.toLowerCase();
+    const alphabet = 'abcdefghijklmnopqrstuvwxyzåäö';
 
-    //Kollar först att tangenten är en bokstav, sedan att bokstaven i fråga inte redan gissats
-    if (alphabet.includes(chosenLetter) && !guessedLetters.includes(chosenLetter)) { 
-        
-        handleGuess(chosenLetter)
+    if (alphabet.includes(chosenLetter) && !guessedLetters.includes(chosenLetter)) {
+        handleGuess(chosenLetter);
 
-        //Stänger av den knapp som motsvarar ens gissning genom att gå igenom alla knappar
-        for (const button of letterButtons) { 
-
-            //Hämtar bokstav från knappen och gör om till liten
-            const btnLetter = button.innerText.toLowerCase() 
-
-            //Stänger av knappen om dess bokstav matchar ens gissning
-            if(chosenLetter == btnLetter) { 
-                button.setAttribute('disabled', 'true') 
+        // Inaktivera motsvarande knapp om den finns på skärmen
+        for (const button of letterButtons) {
+            if (button.innerText.toLowerCase() === chosenLetter) {
+                button.classList.add('guessed');
+                button.disabled = true;
             }
         }
     }
-})
+});
 
-// Start game : ska försöka med arrow function
-const startGame=(word)=> {
-    hiddenWord=word.split('');
-    //hiddenWord= word; // ger in word parametern till functionen och tilldela hiddenWord
-    shownWord=Array(hiddenWord.length).fill("_"); //Få hel bokstaverna och sen fylla de i mellan med " _"
-    guessedLetters=[]; //
-    incorrectGuesses=0;
-    hiddenWordDisplay.textContent=shownWord.join(''); // AZIO = visa med undertecken
-    guessedLettersDisplay.textContent=guessedLetters.join(',');
-    resultText.textContent=" "; // ska visa i result text
-    console.log("le jeux a commencer, Bonne chance  ");
- 
-};
-
-// Eventlistener till bokstaverna TODO
-
-
+// Funktion för att hantera gissningar
 function handleGuess(letter) {
-    console.log(`you guessed letter ${letter}`)
+    console.log(`Du gissade bokstaven: ${letter}`);
+    let correctGuess = false;
 
-    //Sätter att man gissat fel som default
-    let correctGuess = false
+    guessedLetters.push(letter);
 
-    //Lägger till gissningen i historiken
-    guessedLetters.push(letter)
-
-    //Jämför gissningen med alla bokstäver i hiddenWord
-    for (let i = 0; i < hiddenWord.length; i++) { //Itererar med index för att komma åt både hiddenWord och shownWord
-
-        if (letter == hiddenWord[i]) {
-
-            //Förhindrar fel-gissnings-kod från att köras
-            correctGuess = true
-            
-            //Uppdaterar ordet som ska visas 
-            shownWord[i] = letter
-        }
-        
-    }
-
-    if (correctGuess == false) {
-        
-        //TODO: Anropa funktion som uppdaterar gubben
-
-        //inkrementerar incorrectGuesses och ser om man nått förlust
-        incorrectGuesses++
-        if (incorrectGuesses == maxGuesses) {
-            
-            //TODO: Anropa funktion vid förlust
-
+    // Kontrollera om gissningen är rätt eller fel
+    for (let i = 0; i < hiddenWord.length; i++) {
+        if (letter === hiddenWord[i]) {
+            correctGuess = true;
+            shownWord[i] = letter;
         }
     }
-    hiddenWordDisplay.textContent=shownWord.join('');
-    guessedLettersDisplay.textContent=guessedLetters.join(',');
-    if (shownWord.includes('-')==true) {
-        resultText.textContent=" Grattis";
-        console.log(" Grattis");
-        
-        
+
+    hiddenWordDisplay.textContent = shownWord.join(' ');
+    guessedLettersDisplay.textContent = guessedLetters.join(',');
+
+    if (!correctGuess) {
+        incorrectGuesses++;
+        if (incorrectGuesses <= maxGuesses) {
+            hangmanParts[incorrectGuesses - 1].style.display = "block";
+            console.log(`Fel gissning! Totalt antal fel: ${incorrectGuesses}`);
+        }
+
+        if (incorrectGuesses === maxGuesses) {
+            resultText.textContent = "Du förlorade!";
+            disableAllButtons();
+        }
+    } else if (!shownWord.includes('_')) {
+        resultText.textContent = "Grattis, du vann!";
+        disableAllButtons();
     }
-   
 }
+
+// Funktion för att inaktivera alla knappar när spelet är slut
+function disableAllButtons() {
+    letterButtons.forEach(button => {
+        button.classList.add('guessed');
+        button.disabled = true;
+    });
+}
+
+// Starta spelet
+startGame();
 
