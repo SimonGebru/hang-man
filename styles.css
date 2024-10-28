@@ -84,3 +84,10 @@ margin: 20px;
 .hangman-svg #legs {
     display: none;
 } 
+
+#guessed-letters, #hidden-word {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
