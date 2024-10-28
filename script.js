@@ -1,4 +1,4 @@
-// Globala variabler
+// Globala variablers
 let words = ["Javascript", "Programmering", "Utvecklare", "Vispgrädde", "Stjärna", "Lektion", "Betyg"]; 
 let selectedWord = ""; 
 let hiddenWord = []; 
