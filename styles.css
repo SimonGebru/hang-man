@@ -9,8 +9,13 @@ body {
 border: 1px solid black;
     
 }
+header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .hanga{
-  padding: 1em;
+  padding: 20px;
 }
 .word-display{
 display: flex;
