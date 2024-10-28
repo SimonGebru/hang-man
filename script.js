@@ -139,3 +139,10 @@ function handleGuess(letter) {
    
 }
 
+//Funktioner som visar/döljer vår resultats-modal
+function showResultsModal() {
+    document.querySelector('.modal').classList.remove('hidden')
+}
+function hideResultsModal() {
+    document.querySelector('.modal').classList.add('hidden')
+}
