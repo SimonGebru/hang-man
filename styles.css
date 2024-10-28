@@ -21,6 +21,10 @@ width: 300px;
 margin: 20px;
 
 }
+#hidden-word {
+  text-transform: uppercase;
+}
+
 .guess-section{
   padding: 1em;
   margin: 20px 20px ;
@@ -63,3 +67,76 @@ margin: 20px;
    letter-spacing: 0.3em;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hidden {
+  display: none;
+}
+
+.result-message {
+  background-color: white;
+  height: 10rem;
+  width: 30rem;
+  padding: 1rem;
+}
+
+
