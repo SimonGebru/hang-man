@@ -39,7 +39,7 @@ for (const btn of letterButtons) {
     })
 }
 
-//Array med alla alfabetets bokstäver
+
 document.addEventListener('keypress', (event) => {
     //Hämtar vilken tangent som trycks
     const chosenLetter = event.key 
@@ -52,9 +52,9 @@ document.addEventListener('keypress', (event) => {
         
         handleGuess(chosenLetter)
 
+
         //Stänger av den knapp som motsvarar ens gissning genom att gå igenom alla knappar
         for (const button of letterButtons) { 
-
             //Hämtar bokstav från knappen och gör om till liten
             const btnLetter = button.innerText.toLowerCase() 
 
@@ -102,22 +102,32 @@ function handleGuess(letter) {
             
             //Uppdaterar ordet som ska visas 
             shownWord[i] = letter
+
+            //Kontrollerar om man vunnit
+            if(shownWord.join('') == hiddenWord.join('')) {
+
+                console.log(`You've won the game`)
+
+                //TODO: Anropa funktion vid vinst
+            }
         }
         
     }
 
-    if (correctGuess == false) {
-        
+    if (correctGuess === false) {
         //TODO: Anropa funktion som uppdaterar gubben
 
-        //inkrementerar incorrectGuesses och ser om man nått förlust
+        //inkrementerar incorrectGuesses och ser om man förlorat
         incorrectGuesses++
         if (incorrectGuesses == maxGuesses) {
-            
+
+            console.log(`You've lost the game`)
+
             //TODO: Anropa funktion vid förlust
 
         }
     }
+
     hiddenWordDisplay.textContent=shownWord.join('');
     guessedLettersDisplay.textContent=guessedLetters.join(',');
     if (shownWord.includes('-')==true) {
