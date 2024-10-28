@@ -120,11 +120,18 @@ function handleGuess(letter) {
             disableAllButtons();
         }
     } else if (!shownWord.includes('_')) {
-        resultText.textContent = "Grattis, du vann!";
-        console.log("You've won the game"); 
-        disableAllButtons();
+       // resultText.textContent = "Grattis, du vann!";
+       // console.log("You've won the game"); 
+      //  disableAllButtons();
+        handleWinner(); // ringa funktionen istället 
     }
 }
+
+
+// Initialize the game when the document content is fully loaded
+
+document.addEventListener('DOMContentLoaded', startGame);
+console.log(startGame+ "Game starteed=====");
 
 //Funktioner som visar/döljer vår resultats-modal
 function showResultsModal() {
@@ -134,10 +141,33 @@ function hideResultsModal() {
     document.querySelector('.modal').classList.add('hidden')
 }
 
+// Handle winner
+
+function handleWinner() { 
+    resultText.textContent = "Grattis, du vann!";
+    alert("Grattis, du vann! 🐱‍👤");
+     console.log("You've won the game==================================================="+  speakLetter(resultText.textContent));
+      disableAllButtons(); }
+
 function disableAllButtons() {
     letterButtons.forEach(button => {
         button.classList.add('guessed');
         button.disabled = true;
     });
 }
-startGame();
+
+
+// Extra for fan bara ✌
+function speakLetter(letter) {
+    const utterance = new SpeechSynthesisUtterance(letter);
+    window.speechSynthesis.speak(utterance);
+}
+
+// Extra for fan bara ✌
+window.addEventListener('keydown', function(event) {
+    const letter = event.key;
+    if (letter.length === 1 && letter.match(/[a-zA-öÖ]/)) {
+        speakLetter(letter);
+    }
+});
+
