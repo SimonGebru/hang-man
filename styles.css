@@ -28,7 +28,7 @@ margin: 20px;
 }
 #hidden-word, #guessed-letters {
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: bold;
     text-transform: uppercase;
 }
