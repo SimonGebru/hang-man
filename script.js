@@ -42,7 +42,6 @@ const startGame = () => {
 };
 
 
-
 //Lägger på eventlisteners för alla bokstavsknappar
 for (const btn of letterButtons) {
     const chosenLetter = btn.innerText.toLowerCase();
@@ -81,8 +80,6 @@ document.addEventListener('keypress', (event) => {
     }
 })
 
-
-
 // Eventlistener till bokstaverna TODO
 
 
@@ -115,15 +112,10 @@ function handleGuess(letter) {
 
         // Kolla om man förlorat
         if (incorrectGuesses === maxGuesses) {
-            resultText.textContent = "Du förlorade!";
-            console.log("You've lost the game"); 
-            disableAllButtons();
+            handleLoss(); 
         }
     } else if (!shownWord.includes('_')) {
-       // resultText.textContent = "Grattis, du vann!";
-       // console.log("You've won the game"); 
-      //  disableAllButtons();
-        handleWinner(); // ringa funktionen istället 
+        handleWinner(); 
     }
 }
 
@@ -131,7 +123,7 @@ function handleGuess(letter) {
 // Initialize the game when the document content is fully loaded
 
 document.addEventListener('DOMContentLoaded', startGame);
-console.log(startGame+ "Game starteed=====");
+
 
 //Funktioner som visar/döljer vår resultats-modal
 function showResultsModal() {
@@ -142,12 +134,20 @@ function hideResultsModal() {
 }
 
 // Handle winner
-
 function handleWinner() { 
     resultText.textContent = "Grattis, du vann!";
     alert("Grattis, du vann! 🐱‍👤");
-     console.log("You've won the game==================================================="+  speakLetter(resultText.textContent));
-      disableAllButtons(); }
+    console.log("You've won the game");
+    disableAllButtons(); 
+}
+
+// Handle loss
+function handleLoss() { 
+    resultText.textContent = `Du förlorade! Ordet var "${selectedWord}".`;
+    alert(`Du förlorade! Ordet var "${selectedWord}".`);
+    console.log("You've lost the game");
+    disableAllButtons(); 
+}
 
 function disableAllButtons() {
     letterButtons.forEach(button => {
