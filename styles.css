@@ -94,8 +94,15 @@ margin: 20px;
 } 
 
 .hangman-svg #ground {
-    background-color: green;
+    fill: green; 
+    fill-opacity: 1;
+    stroke-width: 1px;
 }
+.hangman-svg #scaffold{
+    fill: rgb(118, 32, 32); 
+    stroke-width: 1px 
+}
+
 .modal {
   position: fixed;
   top: 0;
