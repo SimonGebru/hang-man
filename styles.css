@@ -93,6 +93,9 @@ margin: 20px;
     display: none;
 } 
 
+.hangman-svg #ground {
+    background-color: green;
+}
 .modal {
   position: fixed;
   top: 0;

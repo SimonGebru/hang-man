@@ -159,23 +159,26 @@ function disableAllButtons() {
 
 // Extra for fan bara ✌
 function speakLetter(letter) {
-    const utterance = new SpeechSynthesisUtterance(letter);
-    window.speechSynthesis.speak(utterance);
+    if (isSpeechEnabled) { // Kontrollera om talfunktionen är aktiverad
+        const utterance = new SpeechSynthesisUtterance(letter);
+        window.speechSynthesis.speak(utterance);
+    }
 }
 
 // Extra for fan bara ✌
 window.addEventListener('keydown', function(event) {
     const letter = event.key;
-    if (letter.length === 1 && letter.match(/[a-zA-öÖ]/)) {
+    if (isSpeechEnabled && letter.length === 1 && letter.match(/[a-zA-öÖ]/)) { // Kontrollera talstatus
         speakLetter(letter);
     }
 });
 
+// Variabel för att hålla reda på om talfunktionen är aktiverad eller inte
+let isSpeechEnabled = false;
 
-let isSpeechEnabled = false;// Variabel för att hålla reda på om talfunktionen är aktiverad eller inte
-
+// Koppla eventlistener till knappen som växlar talfunktionen
 document.getElementById("toggle-speech-button").addEventListener("click", function() {
-    isSpeechEnabled = !isSpeechEnabled; 
+    isSpeechEnabled = !isSpeechEnabled; // Växla talstatus
     this.textContent = isSpeechEnabled ? "Inaktivera tal" : "Aktivera tal"; // Uppdatera knappens text
 });
 
