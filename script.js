@@ -171,3 +171,13 @@ window.addEventListener('keydown', function(event) {
     }
 });
 
+
+let isSpeechEnabled = false;// Variabel för att hålla reda på om talfunktionen är aktiverad eller inte
+
+document.getElementById("toggle-speech-button").addEventListener("click", function() {
+    isSpeechEnabled = !isSpeechEnabled; 
+    this.textContent = isSpeechEnabled ? "Inaktivera tal" : "Aktivera tal"; // Uppdatera knappens text
+});
+
+
+

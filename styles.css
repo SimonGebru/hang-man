@@ -116,5 +116,9 @@ margin: 20px;
   width: 30rem;
   padding: 1rem;
 }
-
+ #toggle-speech-button {
+    border-radius: 15px;
+    margin-top: 5px;
+    background-color: ;
+ }
 
