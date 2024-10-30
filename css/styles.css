@@ -1,74 +1,71 @@
-
 * {
-    box-sizing: border-box;
-  }
-  
+  box-sizing: border-box;
+}
+
 body {
   width: 800px;
- margin: auto;
-border: 1px solid black;
-    
+  margin: auto;
+  border: 1px solid black;
 }
-header{
+header {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.hanga{
+.hanga {
   padding: 20px;
 }
-.word-display{
-display: flex;
-align-items: center;
-justify-content: center;
-border: 1px solid dodgerblue;
-width: 300px;
-margin: 20px;
-
+.word-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid dodgerblue;
+  width: 300px;
+  margin: 20px;
 }
-#hidden-word, #guessed-letters {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-transform: uppercase;
+#hidden-word,
+#guessed-letters {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
-.guess-section{
+.guess-section {
   padding: 1em;
-  margin: 20px 20px ;
+  margin: 20px 20px;
   border: 1px solid dodgerblue;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
-  gap:20px;
-
+  gap: 20px;
 }
-.letter-button{
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
-    border: 2px solid black;
-    background-color: white;
-    color: black;
-    cursor: pointer;
-    outline: none;
-    border-radius: 5px;
-    margin: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+.letter-button {
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  outline: none;
+  border-radius: 5px;
+  margin: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
-.input-section{
+.input-section {
   padding: 1em;
-  margin: 20px 20px ;
+  margin: 20px 20px;
   border: 1px solid dodgerblue;
   width: 300px;
   display: flex;
   gap: 20px;
 }
-#guess-input{
+#guess-input {
   width: 100%;
   height: 100%;
   padding: 10px;
@@ -76,12 +73,12 @@ margin: 20px;
   border: 1px solid dodgerblue;
   text-align: center;
 }
-#guess-button{
+#guess-button {
   width: 50%;
   border-radius: 30px;
-   border: 1px solid darkorchid;
-   text-align: center;
-   letter-spacing: 0.3em;
+  border: 1px solid darkorchid;
+  text-align: center;
+  letter-spacing: 0.3em;
 }
 
 .hangman-svg #ground,
@@ -90,17 +87,17 @@ margin: 20px;
 .hangman-svg #body,
 .hangman-svg #arms,
 .hangman-svg #legs {
-    display: none;
-} 
+  display: none;
+}
 
 .hangman-svg #ground {
-    fill: green; 
-    fill-opacity: 1;
-    stroke-width: 1px;
+  fill: green;
+  fill-opacity: 1;
+  stroke-width: 1px;
 }
-.hangman-svg #scaffold{
-    fill: rgb(118, 32, 32); 
-    stroke-width: 1px 
+.hangman-svg #scaffold {
+  fill: rgb(118, 32, 32);
+  stroke-width: 1px;
 }
 
 .modal {
@@ -126,9 +123,7 @@ margin: 20px;
   width: 30rem;
   padding: 1rem;
 }
- #toggle-speech-button {
-    border-radius: 15px;
-    margin-top: 5px;
-    background-color: ;
- }
-
+#toggle-speech-button {
+  border-radius: 15px;
+  margin-top: 5px;
+}
