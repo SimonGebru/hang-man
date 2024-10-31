@@ -174,7 +174,8 @@ function hideResultsModal() {
 // Handle winner
 function handleWinner() {
   resultText.textContent = "Grattis, du vann!";
-  alert("Grattis, du vann! 🐱‍👤");
+  // alert("Grattis, du vann! 🐱‍👤");
+  showResultsModal()
   console.log("You've won the game");
   disableAllButtons();
 }
@@ -182,7 +183,8 @@ function handleWinner() {
 // Handle loss
 function handleLoss() {
   resultText.textContent = `Du förlorade! Ordet var "${selectedWord}".`;
-  alert(`Du förlorade! Ordet var "${selectedWord}".`);
+  // alert(`Du förlorade! Ordet var "${selectedWord}".`);
+  showResultsModal()
   console.log("You've lost the game");
   disableAllButtons();
 }
@@ -222,3 +224,18 @@ document
     isSpeechEnabled = !isSpeechEnabled; // Växla talstatus
     this.textContent = isSpeechEnabled ? "Inaktivera tal" : "Aktivera tal"; // Uppdatera knappens text
   });
+
+
+//Hanterar "Spela Igen"-klick
+restartButton.addEventListener('click', () => {
+
+  // Tar bort disable från bokstavs-knappar
+  letterButtons.forEach(button => {
+      button.disabled = false
+      button.classList.remove('guessed')
+  })
+
+  startGame()
+
+  hideResultsModal()
+})
